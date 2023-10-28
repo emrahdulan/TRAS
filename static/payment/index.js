@@ -24,7 +24,8 @@ var status = 'succeeded'
 
   $.ajax({
     type: "POST",
-    url: 'http://127.0.0.1:8000/orders/add/',
+    url: 'http://128.140.106.0:8000/orders/add/',
+    /* url: 'http://127.0.0.1:8000/orders/add/', */
     data: {
       order_key: clientsecret,
       csrfmiddlewaretoken: CSRF_TOKEN,
@@ -40,7 +41,8 @@ var status = 'succeeded'
             // execution. Set up a webhook or plugin to listen for the
             // payment_intent.succeeded event that handles any business critical
             // post-payment actions.
-            window.location.replace("http://127.0.0.1:8000/payment/orderplaced/");
+            window.location.replace("http://128.140.106.0:8000/payment/orderplaced/");
+            /* window.location.replace("http://127.0.0.1:8000/payment/orderplaced/"); */
         }
     },
     error: function (xhr, errmsg, err) {
