@@ -1,12 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.query import QuerySet
+from django.conf import settings
 from django.urls import reverse
 
 # Create your models here.
 
 class ProductManager(models.Manager):
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self):
         return super(ProductManager, self).get_queryset().filter(is_active=True)
 
 class Category(models.Model):
@@ -24,7 +23,7 @@ class Category(models.Model):
     
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, related_name='product_creator', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='product_creator', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/', default='images/default.jpg')

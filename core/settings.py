@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_5!#)2(4qec$)5fds@fbhux83(*t6bn8iy0#rq93^0$a+gp=ua
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['128.140.106.0', '127.0.0.1']
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
 
     'store',
     'basket',
+    'account',
+    
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +140,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+BASKET_SESSION_ID = 'basket'
+
+# Custom user model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
+# Email setting
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
